@@ -13,8 +13,7 @@ layout: center
 我们通过对不同工作负载下不同引擎和数据库配置的综合评估证明了这一点.
 
 ---
-layout: figure-side
-figureUrl: 2025-3-19/img/Socket_topology.png
+layout: two-cols
 ---
 
 - 每个内存通道都通过集成的内存控制器(iMC)连接到CPU, iMC维护NVM DIRECT的读/写队列,并确保断电时的持久性
@@ -29,9 +28,12 @@ figureUrl: 2025-3-19/img/Socket_topology.png
   2. NVM不是外围设备，因此DMA不可用，CPU必须参与NVM和CPU之间的每次数据传输。
   3. 尽管NVM有自己的预取器，但它不能使用OS页缓存来获得额外的内存容量，它必须直接依赖于应用程序分配的内存。
 
+::right::
+
+![](./img/Socket_topology.png)
+
 ---
-layout: figure
-figureUrl: 2025-3-19/img/TestEnv1.png
+layout: two-cols
 ---
 
 ## 测试环境
@@ -39,36 +41,36 @@ figureUrl: 2025-3-19/img/TestEnv1.png
 - Memory模式：全部nvm都当作内存
 - AppDirect模式：`fsdax`挂载nvm，不使用SSD
 
+::right::
+
+![](./img/TestEnv1.png)
+
 ---
-layout: figure
-figureUrl: 2025-3-19/img/latency1.png
+layout: two-cols
 ---
 
 ## 读写延迟
 
----
-layout: figure
-figureUrl: 2025-3-19/img/brandwidth1.png
----
+![](./img/latency1.png)
+
+::right::
 
 ## 读写带宽
 
----
-layout: figure
-figureUrl: 2025-3-19/img/tpch1.png
+![](./img/brandwidth1.png)
+
 ---
 
 ## TPC-H测试
 
----
-layout: figure
-figureUrl: 2025-3-19/img/tcph-brandwidth1.png
+![](./img/tpch1.png)
+
 ---
 
 ## TPC-H测试PG的写/读带宽
 
----
-layout: default
+![](./img/tcph-brandwidth1.png)
+
 ---
 
 ## 结论(关于OLAP)
@@ -90,9 +92,6 @@ layout: default
   - 工作集小，内存占用低的查询的运行时间不受较大的易失性内存容量的影响
 
 ---
-layout: figure-side
-figureUrl: 2025-3-19/img/tpcc1.png
----
 
 ## TPC-C测试
 
@@ -100,23 +99,23 @@ figureUrl: 2025-3-19/img/tpcc1.png
 - 具有少量的写线程，在一个线程中组合写操作，能够获得性能提升，并且还避免了颠簸。(MySQL和PostgreSQL)
 - 严重的争用，以及混合读/写工作负载会显著影响NVM性能，性能甚至会下降。(SQLServer和VoltDB)
 
----
-layout: figure
-figureUrl: 2025-3-19/img/tpcc-alter-place-of-nvm1.png
+![](./img/tpcc1.png)
+
 ---
 
 ## TPC-C测试(改变日志和数据的存放位置)
 
 仅将日志放在NVM中并不能提供显著的性能优势。因此，数据应该存放在NVM中，或者数据和日志都放在NVM中。
 
----
-layout: figure
-figureUrl: 2025-3-19/img/1f6.png
+![](./img/tpcc-alter-place-of-nvm1.png)
+
 ---
 
 - 在MYSQL中，双写缓冲区是脏页被刷新到的存储区域，脏页在写入数据文件中的相应位置之前被刷新到该区域
 - 默认模式的tpmC保持稳定，因为双写是后台刷新的一部分
 - 当禁用双写入时，AppDirect模式的tpmC显著增加高达20%，表明NVM在高并发访问时表现不佳
+
+![](./img/1f6.png)
 
 ---
 layout: two-cols
