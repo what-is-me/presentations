@@ -37,17 +37,8 @@ layout: two-cols
 ---
 
 ## 测试环境
-- Default模式：使用SSD
-- Memory模式：全部nvm都当作内存
-- AppDirect模式：`fsdax`挂载nvm，不使用SSD
-
-::right::
 
 ![](./img/TestEnv1.png)
-
----
-layout: two-cols
----
 
 ## 读写延迟
 
@@ -59,9 +50,13 @@ layout: two-cols
 
 ![](./img/brandwidth1.png)
 
+- Default模式：使用SSD
+- Memory模式：全部nvm都当作内存
+- AppDirect模式：`fsdax`挂载nvm，不使用SSD
+
 ---
 
-## TPC-H测试
+## TPC-H测试(SF=100)
 
 ![](./img/tpch1.png)
 
@@ -92,12 +87,15 @@ layout: two-cols
   - 工作集小，内存占用低的查询的运行时间不受较大的易失性内存容量的影响
 
 ---
-
+layout: two-cols-header
+---
 ## TPC-C测试
 
 - TPC-C是一个写入繁重的工作负载。
 - 具有少量的写线程，在一个线程中组合写操作，能够获得性能提升，并且还避免了颠簸。(MySQL和PostgreSQL)
 - 严重的争用，以及混合读/写工作负载会显著影响NVM性能，性能甚至会下降。(SQLServer和VoltDB)
+
+::left::
 
 ![](./img/tpcc1.png)
 
@@ -110,10 +108,14 @@ layout: two-cols
 ![](./img/tpcc-alter-place-of-nvm1.png)
 
 ---
+layout: two-cols-header
+---
 
 - 在MYSQL中，双写缓冲区是脏页被刷新到的存储区域，脏页在写入数据文件中的相应位置之前被刷新到该区域
 - 默认模式的tpmC保持稳定，因为双写是后台刷新的一部分
 - 当禁用双写入时，AppDirect模式的tpmC显著增加高达20%，表明NVM在高并发访问时表现不佳
+
+::left::
 
 ![](./img/1f6.png)
 
