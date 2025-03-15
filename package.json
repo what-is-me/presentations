@@ -1,0 +1,17 @@
+{
+  "name": "presentations",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node code-gen.js && slidev build",
+    "dev": "node code-gen.js && slidev --open",
+    "export": "node code-gen.js && slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^51.4.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "slidev-theme-academic": "^2.1.0",
+    "vue": "^3.5.13"
+  }
+}
