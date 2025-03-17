@@ -9,7 +9,7 @@ const presentationDirs = readdirSync(".").filter(item => {
 });
 
 const slides = openSync("slides.md", 'w');
-writeSync(slides, "---\ntheme: default\n---\n")
+writeSync(slides, "---\ntheme: default\nselectable: true\n---\n")
 writeSync(slides, `# Database Presentation\n`)
 for (const item of presentationDirs) {
     const content = `---\nsrc: ${item}/index.md\nhide: false\n---\n`
